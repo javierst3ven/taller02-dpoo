@@ -2,4 +2,4 @@
 
 Implementación del siguiente modelo:
 
-![](./completo.png)
+![Diagrama UML Completo](./img/completo.png)

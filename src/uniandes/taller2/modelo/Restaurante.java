@@ -7,8 +7,8 @@ public class Restaurante {
   public Restaurante () {}
   public void iniciarPedido() {}
   // public Pedido getPedidoEnCurso() {}
-  public ArrayList<ProductoMenu> getMenuBase() {}
-  public ArrayList<Ingrediente> getIngredientes() {}
+  public ArrayList<ProductoMenu> getMenuBase() { return new ArrayList<ProductoMenu>(); }
+  public ArrayList<Ingrediente> getIngredientes() { return new ArrayList<Ingrediente>(); }
   public void cargarInformacionRestaurante(File archivoIngredientes, File archivoMenu, File archivoCombos) {}
 
   /*

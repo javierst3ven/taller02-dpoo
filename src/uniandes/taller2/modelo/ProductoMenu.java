@@ -1,6 +1,6 @@
 package uniandes.taller2.modelo;
 
-public class ProductoMenu {
+public class ProductoMenu implements Producto {
   private String nombre;
   private int precioBase;
 
@@ -10,6 +10,6 @@ public class ProductoMenu {
   }
 
   public String getNombre() { return nombre; }
-  public int getPrecioBase() { return precioBase; }
+  public int getPrecio() { return precioBase; }
   public String generarTextoFactura() { return "[[FACTURA]]"; }
 }

@@ -1,7 +1,7 @@
 package uniandes.taller2.modelo;
 
 public interface Producto {
-  public int getProducto();
+  public int getPrecio();
   public String getNombre();
   public String generarTextoFactura();
 }

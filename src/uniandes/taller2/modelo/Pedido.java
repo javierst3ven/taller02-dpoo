@@ -4,8 +4,8 @@ import java.io.File;
 
 public class Pedido {
   // attributes
-  private int numeroPedidos;
-  private int idPedido;
+  private int numeroPedidos = 0;
+  private int idPedido = 0;
   private String nombreCliente;
   private String direccionCliente;
 
@@ -16,8 +16,11 @@ public class Pedido {
   }
 
   public int getIdPedido() { return idPedido; }
-  public void agregarPedido(ProductoMenu nuevoItem) {}
+  public void agregarPedido(ProductoMenu nuevoItem) {
+
+  }
   public void guardarFactura(File archivo) {}
+
   private int getPrecioNetoPedido() { return 1; }
   private int getPrecioTotalPedido() { return 1; }
   private int getPrecioIVAPedido() { return 1; }

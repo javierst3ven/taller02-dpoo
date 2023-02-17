@@ -17,7 +17,7 @@ public class Pedido {
 
   public int getIdPedido() { return idPedido; }
   public void agregarPedido(ProductoMenu nuevoItem) {
-
+    
   }
   public void guardarFactura(File archivo) {}
 
@@ -25,5 +25,4 @@ public class Pedido {
   private int getPrecioTotalPedido() { return 1; }
   private int getPrecioIVAPedido() { return 1; }
   private String generarTextoFactura() { return ""; }
-
 }

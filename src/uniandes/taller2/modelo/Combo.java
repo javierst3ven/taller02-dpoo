@@ -12,5 +12,5 @@ public class Combo {
   public void agregarItemACombo(Producto itemCombo) {}
   public int getPrecio() { return 12; }
   public String generarTextoFactura() { return ""; }
-  public String getNombre() { return ""; }
+  public String getNombre() { return nombreCombo; }
 }

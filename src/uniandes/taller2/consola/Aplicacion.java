@@ -9,8 +9,8 @@ import uniandes.taller2.modelo.Restaurante;
 import uniandes.taller2.modelo.ProductoMenu;
 
 public class Aplicacion {
-  static Restaurante restaurante = new Restaurante();
-  static BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+  private static Restaurante restaurante = new Restaurante();
+  private static BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 
 	public static void main(String[] args) {
     int option = 1;
@@ -44,6 +44,9 @@ public class Aplicacion {
     if(opcionSeleccionada == 0) { System.out.println("\nTerminando el programa!"); }
     else if(opcionSeleccionada == 1) { ejecutarMostrarMenu(); }
     else if(opcionSeleccionada == 2) { ejecutarIniciarNuevoPedido(); }
+    else if(opcionSeleccionada == 3) { ejecutarAgregarElementoPedido(); }
+    else if(opcionSeleccionada == 4) { ejecutarCerrarPedidoYGuardarFactura(); }
+    else if(opcionSeleccionada == 5) { ejecutarConsultarInformacionPedido(); }
     else { System.out.println("Ninguna opción valida ha sido seleccionada"); }
   }
 
@@ -65,5 +68,17 @@ public class Aplicacion {
     } catch (IOException exception) {
       System.err.println("ERROR: no se ha podido crear el pedido");
     }
+  }
+
+  private static void ejecutarAgregarElementoPedido() {
+
+  }
+
+  private static void ejecutarCerrarPedidoYGuardarFactura() {
+
+  }
+
+  private static void ejecutarConsultarInformacionPedido() {
+
   }
 }

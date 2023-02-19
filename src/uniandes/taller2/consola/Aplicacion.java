@@ -1,25 +1,28 @@
 package uniandes.taller2.consola;
-import java.util.Scanner;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import uniandes.taller2.modelo.*;
+
 import uniandes.taller2.modelo.Restaurante;
+import uniandes.taller2.modelo.ProductoMenu;
 
 public class Aplicacion {
   static Restaurante restaurante = new Restaurante();
-  static Scanner scanner = new Scanner(System.in);
   static BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 
 	public static void main(String[] args) {
-    int option;
-    do {
-      mostrarMenu();
-      option = scanner.nextInt();
-      ejecutarOpcion(option);
-    } while(option != 0);
-    scanner.close();
+    int option = 1;
+    while(option!=0) {
+      try {
+        mostrarMenu();
+        option = Integer.parseInt(bf.readLine());
+        ejecutarOpcion(option);
+      } catch (IOException e) {
+        System.err.println("ERROR: no se ha poddio leer la linea");
+      }
+    }
 	}
 
   public static void mostrarMenu() {

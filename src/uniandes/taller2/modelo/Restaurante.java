@@ -5,8 +5,16 @@ import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
+/*
+ * función de pedidoEnCurso
+ * implementar guardarYCerrarPedido
+ */
+
 public class Restaurante {
-  private ArrayList<ProductoMenu> productosMenu = new ArrayList<ProductoMenu>();
+  private ArrayList<Combo> combos = new ArrayList<Combo>();
+  private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+  private int pedidoEnCurso = 0;
+  private ArrayList<ProductoMenu> menuBase = new ArrayList<ProductoMenu>();
   private ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
   
   public Restaurante () {
@@ -21,25 +29,40 @@ public class Restaurante {
     );
   }
 
-  public void iniciarPedido(String nombreCliente, String direccionCliente) {}
+  public void iniciarPedido(String nombreCliente, String direccionCliente) {
+    Pedido pedido = new Pedido(nombreCliente, direccionCliente);
+    pedidos.add(pedido);
+    this.pedidoEnCurso = 1;
+  }
 
-  public Pedido getPedidoEnCurso() { return new Pedido("juana", "calle19"); }
-  public ArrayList<ProductoMenu> getMenuBase() { return productosMenu; }
-  public ArrayList<Ingrediente> getIngredientes() { return ingredientes; }
+  public void cerrarYGuardarPedido() {
+    // escribir en un archivo txt el pedido, sacarlo de la lista y cambiar
+    // pedido en curso a 0
+    this.pedidoEnCurso = 0;
+  }
+
+  public Pedido getPedidoEnCurso() {
+    return this.pedidos.get(0);
+  }
+
+  public ArrayList<ProductoMenu> getMenuBase() {
+    return this.menuBase;
+  }
+
+  public ArrayList<Ingrediente> getIngredientes() {
+    return this.ingredientes;
+  }
 
   public void cargarInformacionRestaurante(File archivoIngredientes, File archivoMenu, File archivoCombos) {
     try {
       cargarIngredientes(archivoIngredientes);
       cargarMenu(archivoMenu);
       cargarCombos(archivoCombos);
-    } catch (Exception e) {
+    } catch (FileNotFoundException e) {
       System.err.println("Hubo un error cargando los archivos");
     }
   }
 
-  /*
-   * Private methods
-   */
   private void cargarIngredientes(File archivoIngredientes) throws FileNotFoundException {
     Scanner file = new Scanner(archivoIngredientes);
     while(file.hasNextLine()) {
@@ -55,10 +78,18 @@ public class Restaurante {
     while(file.hasNextLine()) {
       String[] data = file.nextLine().split(";");
       ProductoMenu producto = new ProductoMenu(data[0], Integer.parseInt(data[1]));
-      this.productosMenu.add(producto);
+      this.menuBase.add(producto);
     }
     file.close();
   }
 
-  private void cargarCombos(File archivoCombos) throws FileNotFoundException {}
+  private void cargarCombos(File archivoCombos) throws FileNotFoundException {
+    Scanner file = new Scanner(archivoCombos);
+    while(file.hasNextLine()) {
+      String[] data = file.nextLine().split(";");
+      Combo combo = new Combo(data[0], Integer.parseInt(data[1].replace("%", "")));
+      this.combos.add(combo);
+    }
+    file.close();
+  }
 }

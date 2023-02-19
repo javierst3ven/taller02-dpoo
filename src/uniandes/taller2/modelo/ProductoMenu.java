@@ -9,7 +9,10 @@ public class ProductoMenu implements Producto {
     this.precioBase = precioBase;
   }
 
+  @Override   
   public String getNombre() { return nombre; }
+  @Override
   public int getPrecio() { return precioBase; }
+  @Override
   public String generarTextoFactura() { return "[[FACTURA]]"; }
 }

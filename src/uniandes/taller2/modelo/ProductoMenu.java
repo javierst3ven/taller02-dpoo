@@ -10,9 +10,17 @@ public class ProductoMenu implements Producto {
   }
 
   @Override   
-  public String getNombre() { return nombre; }
+  public String getNombre() {
+    return nombre;
+  }
+  
   @Override
-  public int getPrecio() { return precioBase; }
+  public int getPrecio() {
+    return precioBase;
+  }
+
   @Override
-  public String generarTextoFactura() { return "[[FACTURA]]"; }
+  public String generarTextoFactura() {
+    return "[[FACTURA]]";
+  }
 }

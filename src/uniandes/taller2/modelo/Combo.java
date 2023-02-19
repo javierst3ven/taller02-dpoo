@@ -7,15 +7,31 @@ public class Combo {
   private String nombreCombo;
   private ArrayList<Producto> itemsCombo = new ArrayList<Producto>();
 
+  /**
+   * Construye un nuevo combo con el nombre del combo y su descuento
+   * 
+   * @param nombreCombo Nombre que tiene el combo
+   * @param descuento Descuento que tiene el combo
+   */
   public Combo(String nombreCombo, double descuento) {
-    this.descuento = descuento;
     this.nombreCombo = nombreCombo;
+    this.descuento = descuento;
   }
 
+  /**
+   * Agrega un nuevo producto al array de productos
+   * 
+   * @param itemCombo Producto que será agregado
+   */
   public void agregarItemACombo(Producto itemCombo) {
     this.itemsCombo.add(itemCombo);
   }
 
+  /**
+   * Genera el precio del combo (la suma de todos los productos)
+   * 
+   * @return precio Precio total del combo
+   */
   public int getPrecio() {
     int precio = 0;
     for(Producto producto : itemsCombo) {
@@ -24,11 +40,23 @@ public class Combo {
     return precio;
   }
 
+  /**
+   * Genera el texto de la factura para el combo
+   * 
+   * @return formato
+   */
   public String generarTextoFactura() {
-    String factura = "";
+    String formato = "";
     // implementar
-    return factura;
+    return formato;
   }
 
-  public String getNombre() { return nombreCombo; }
+  /**
+   * Retorna el nombre del combo
+   * 
+   * @return nombreCombo
+   */
+  public String getNombre() {
+    return nombreCombo;
+  }
 }

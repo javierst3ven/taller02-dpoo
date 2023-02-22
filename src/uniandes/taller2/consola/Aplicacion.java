@@ -12,6 +12,9 @@ public class Aplicacion {
   private static Restaurante restaurante = new Restaurante();
   private static BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 
+	/**
+	 * Punto de entrada de la aplicación
+	 */
 	public static void main(String[] args) {
     int option = 1;
     while(option!=0) {
@@ -20,11 +23,14 @@ public class Aplicacion {
         option = Integer.parseInt(bf.readLine());
         ejecutarOpcion(option);
       } catch (IOException e) {
-        System.err.println("ERROR: no se ha poddio leer la linea");
+        System.err.println("ERROR: no se ha podido leer la linea");
       }
     }
 	}
 
+  /**
+   * Imprime el menu con las opciones disponibles
+   */
   public static void mostrarMenu() {
     System.out.println("\n******************************************************");
     System.out.println("====================    MENU   =======================");
@@ -40,6 +46,11 @@ public class Aplicacion {
     System.out.print("\n$> ");
   }
 
+  /**
+   * Ejecuta una opción
+   * 
+   * @param opcionSeleccionada Opcion que será ejecutada
+   */
   public static void ejecutarOpcion(int opcionSeleccionada) {
     if(opcionSeleccionada == 0) { System.out.println("\nTerminando el programa!"); }
     else if(opcionSeleccionada == 1) { ejecutarMostrarMenu(); }
@@ -50,14 +61,23 @@ public class Aplicacion {
     else { System.out.println("Ninguna opción valida ha sido seleccionada"); }
   }
 
+  /**
+   * Muestra el menu disponible
+   */
   private static void ejecutarMostrarMenu() {
-    System.out.println("Mostrando el menú:");
+    System.out.println("################################");
+    System.out.println("MENU:");
     ArrayList<ProductoMenu> menu = restaurante.getMenuBase();
+    System.out.println("################################");
     for (ProductoMenu producto : menu) {
-      System.out.println(producto.getNombre() + " :: " + producto.getPrecio());
+      System.out.println(producto.generarTextoFactura());
     }
+    System.out.println("################################");
   }
 
+  /**
+   * Inicia un nuevo pedido
+   */
   private static void ejecutarIniciarNuevoPedido() {
     try {
       System.out.println("Ingrese el nombre del cliente: ");
@@ -70,14 +90,23 @@ public class Aplicacion {
     }
   }
 
+  /**
+   * Agrega un nuevo elemento al pedido
+   */
   private static void ejecutarAgregarElementoPedido() {
 
   }
 
+  /**
+   * Cierra y guarda un pedido en una factura
+   */
   private static void ejecutarCerrarPedidoYGuardarFactura() {
 
   }
 
+  /**
+   * Consulta la información del pedido
+   */
   private static void ejecutarConsultarInformacionPedido() {
 
   }

@@ -30,6 +30,6 @@ public class Ingrediente {
    * @return costoAdicional
    */
   public int getCostoAdicional() {
-    return costoAdicional;
+    return this.costoAdicional;
   }
 }

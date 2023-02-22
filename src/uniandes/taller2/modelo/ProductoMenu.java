@@ -4,6 +4,12 @@ public class ProductoMenu implements Producto {
   private String nombre;
   private int precioBase;
 
+  /**
+   * Construye un nuevo ProductoMenu con un nombre y un precio base
+   * 
+   * @param nombre Nombre del producto
+   * @param precioBase Precio del producto
+   */
   public ProductoMenu(String nombre, int precioBase) {
     this.nombre = nombre;
     this.precioBase = precioBase;
@@ -11,16 +17,16 @@ public class ProductoMenu implements Producto {
 
   @Override   
   public String getNombre() {
-    return nombre;
+    return this.nombre;
   }
   
   @Override
   public int getPrecio() {
-    return precioBase;
+    return this.precioBase;
   }
 
   @Override
   public String generarTextoFactura() {
-    return "[[FACTURA]]";
+    return "[*] " + this.nombre + " :: $" + this.precioBase;
   }
 }

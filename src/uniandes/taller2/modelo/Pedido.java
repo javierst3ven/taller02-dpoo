@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Pedido {
-  private int numeroPedidos = 0; // llevar un global
+  private int numeroPedidos = 0;
   private int idPedido = 0;
   private String nombreCliente;
   private String direccionCliente;
@@ -50,7 +50,7 @@ public class Pedido {
    */
   public void guardarFactura(File archivo) {
     try {
-      FileWriter file = new FileWriter(("./out/pedido"+idPedido+".txt"));
+      FileWriter file = new FileWriter(archivo);
       file.write(generarTextoFactura());
       file.close();
     } catch (IOException e) {
@@ -72,25 +72,25 @@ public class Pedido {
   }
 
   /**
-   * Genera el precio total del pedido con el IVA
+   * Genera la suma del 19% de cada uno de los productos
    * 
    * @return precioIVAPedido
    */
   private int getPrecioIVAPedido() {
-    int precioIVAPedido = 0;
-    // implementar
-    return precioIVAPedido;
+    double precioIVAPedido = 0.0;
+    for (Producto producto : itemsPedido) {
+      precioIVAPedido += producto.getPrecio() * 0.19;
+    }
+    return (int) precioIVAPedido;
   }
 
   /**
-   * Genera el precio total del pedido sumando el precio neto total y precio con el IVA
+   * Genera el precio total del pedido sumando el precio neto total y el precio del IVA
    * 
    * @return precioTotalPedido
    */
   private int getPrecioTotalPedido() {
-    int precioTotalPedido = 0;
-    // implementar
-    return precioTotalPedido;
+    return this.getPrecioIVAPedido() + this.getPrecioNetoPedido();
   }
 
   /**

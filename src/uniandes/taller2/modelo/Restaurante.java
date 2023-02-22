@@ -5,18 +5,13 @@ import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
-/*
- * función de pedidoEnCurso
- * implementar guardarYCerrarPedido
- */
-
 public class Restaurante {
   private ArrayList<Combo> combos = new ArrayList<Combo>();
   private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
   private int pedidoEnCurso = 0;
   private ArrayList<ProductoMenu> menuBase = new ArrayList<ProductoMenu>();
   private ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
-  
+
   /**
    * Construye un nuevo Restaurante cargando la información de los
    * archivos de texto de ingredientes, menu y combos

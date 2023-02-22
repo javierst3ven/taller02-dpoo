@@ -2,7 +2,7 @@ package uniandes.taller2.modelo;
 
 import java.util.ArrayList;
 
-public class Combo {
+public class Combo implements Producto {
   private double descuento;
   private String nombreCombo;
   private ArrayList<Producto> itemsCombo = new ArrayList<Producto>();
@@ -27,11 +27,7 @@ public class Combo {
     this.itemsCombo.add(itemCombo);
   }
 
-  /**
-   * Genera el precio del combo (la suma de todos los productos)
-   * 
-   * @return precio Precio total del combo
-   */
+  @Override
   public int getPrecio() {
     int precio = 0;
     for(Producto producto : itemsCombo) {
@@ -40,22 +36,14 @@ public class Combo {
     return precio;
   }
 
-  /**
-   * Genera el texto de la factura para el combo
-   * 
-   * @return formato
-   */
+  @Override
   public String generarTextoFactura() {
     String formato = "";
     // implementar
     return formato;
   }
 
-  /**
-   * Retorna el nombre del combo
-   * 
-   * @return nombreCombo
-   */
+  @Override
   public String getNombre() {
     return nombreCombo;
   }

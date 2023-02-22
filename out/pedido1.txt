@@ -1,0 +1,7 @@
+PEDIDO No. (1)
+###################
+###################
+Total pedido:0
+Total pedido (IVA):0
+Total pedido (IVA+Neto):0
+###################

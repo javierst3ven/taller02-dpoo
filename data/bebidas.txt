@@ -1,0 +1,3 @@
+gaseosa 1.5L;5500;0
+gaseosa personal;3000;0
+agua con gas;2000;0

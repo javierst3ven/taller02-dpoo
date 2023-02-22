@@ -1,10 +1,12 @@
 package uniandes.taller2.consola;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import uniandes.taller2.modelo.Restaurante;
 import uniandes.taller2.modelo.Pedido;
@@ -96,7 +98,20 @@ public class Aplicacion {
    * Agrega un nuevo elemento al pedido
    */
   private static void ejecutarAgregarElementoPedido() {
-    
+    System.out.println("Escriba si desea: ");
+    System.out.println("1) Producto del menu");
+    System.out.println("2) Combo");
+    System.out.println("3) Bebida");
+    System.out.print("-> ");
+    try {
+      int subOption = Integer.parseInt(bf.readLine());
+      if(subOption == 1) {}
+      else if(subOption == 2) {}
+      else if(subOption == 3) {}
+      else { System.out.println("Elija una opción valida"); }
+    } catch(IOException e) {
+      System.err.println("[ERROR] no se ha podido leer la opción");
+    }
   }
 
   /**
@@ -112,16 +127,19 @@ public class Aplicacion {
    */
   private static void ejecutarConsultarInformacionPedidoPorID() {
     try {
+      System.out.print("Digite el id del pedido a consultar: ");
       int id = Integer.parseInt(bf.readLine());
       Pedido pedido = restaurante.getPedidoPorID(id);
       if(pedido == null) {
         System.out.println("El pedido con el ID No. " + id + " no existe");
       } else {
-        System.out.println("Pedido No. " + pedido.getIdPedido());
-        BufferedReader bf = new BufferedReader(new FileReader("/out/pedido" + id + ".txt"));
-        String line;
-        while((line = bf.readLine()) != "") {
+        System.out.println("Consultando sobre el pedido " + id + "\n");
+
+        BufferedReader bf = new BufferedReader(new FileReader("./out/pedido" + id + ".txt"));
+        String line = bf.readLine();
+        while(line != null) {
           System.out.println(line);
+          line = bf.readLine();
         }
         bf.close();
       }

@@ -11,6 +11,7 @@ public class Restaurante {
   private Pedido pedidoEnCurso;
   private ArrayList<ProductoMenu> menuBase = new ArrayList<ProductoMenu>();
   private ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+  private ArrayList<ProductoMenu> bebidas = new ArrayList<ProductoMenu>();
 
   /**
    * Construye un nuevo Restaurante cargando la información de los
@@ -20,11 +21,13 @@ public class Restaurante {
     File archivoIngredientes = new File("./data/ingredientes.txt");
     File archivoMenu = new File("./data/menu.txt");
     File archivoCombos = new File("./data/combos.txt");
+    File archivoBebidas = new File("./data/bebidas.txt");
 
     cargarInformacionRestaurante(
       archivoIngredientes,
       archivoMenu,
-      archivoCombos
+      archivoCombos,
+      archivoBebidas
     );
   }
 
@@ -42,7 +45,7 @@ public class Restaurante {
    * Cierra y guarda el pedido en un archivo .txt en la carpeta /out/pedido{id}.txt
    */
   public void cerrarYGuardarPedido() {
-    File archivoAGuardar = new File("/out/pedido" + pedidoEnCurso.getIdPedido()+".txt");
+    File archivoAGuardar = new File("./out/pedido" + pedidoEnCurso.getIdPedido()+".txt");
     pedidoEnCurso.guardarFactura(archivoAGuardar);
     pedidos.add(pedidoEnCurso);
     pedidoEnCurso = null;
@@ -90,11 +93,12 @@ public class Restaurante {
    * @param archivoMenu El archivo que contiene el menu
    * @param archivoCombos El archivo que contiene los combos
    */
-  public void cargarInformacionRestaurante(File archivoIngredientes, File archivoMenu, File archivoCombos) {
+  public void cargarInformacionRestaurante(File archivoIngredientes, File archivoMenu, File archivoCombos, File archivoBebidas) {
     try {
       cargarIngredientes(archivoIngredientes);
       cargarMenu(archivoMenu);
       cargarCombos(archivoCombos);
+      cargarBebidas(archivoBebidas);
     } catch (FileNotFoundException e) {
       System.err.println("Hubo un error cargando los archivos");
     }
@@ -147,6 +151,23 @@ public class Restaurante {
       String[] data = file.nextLine().split(";");
       Combo combo = new Combo(data[0], Integer.parseInt(data[1].replace("%", "")));
       this.combos.add(combo);
+    }
+    file.close();
+  }
+
+  /**
+   * Agrega las bebidas que se encuentran en el archivo /data/bebidas.txt
+   * a un arreglo de productos
+   * 
+   * @param archivoBebidas El archivo que contiene las bebidas
+   * @throws FileNotFoundException El archivo no se encuentra en la carpeta
+   */
+  private void cargarBebidas(File archivoBebidas) throws FileNotFoundException {
+    Scanner file = new Scanner(archivoBebidas);
+    while(file.hasNextLine()) {
+      String[] data = file.nextLine().split(";");
+      ProductoMenu bebida = new ProductoMenu(data[0], Integer.parseInt(data[1]));
+      this.bebidas.add(bebida);
     }
     file.close();
   }

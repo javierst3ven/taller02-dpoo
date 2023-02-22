@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Combo implements Producto {
   private double descuento;
   private String nombreCombo;
-  private ArrayList<Producto> itemsCombo = new ArrayList<Producto>();
+  private ArrayList<ProductoMenu> itemsCombo = new ArrayList<ProductoMenu>();
 
   /**
    * Construye un nuevo combo con el nombre del combo y su descuento
@@ -23,7 +23,7 @@ public class Combo implements Producto {
    * 
    * @param itemCombo Producto que será agregado
    */
-  public void agregarItemACombo(Producto itemCombo) {
+  public void agregarItemACombo(ProductoMenu itemCombo) {
     this.itemsCombo.add(itemCombo);
   }
 
@@ -33,7 +33,7 @@ public class Combo implements Producto {
     for(Producto producto : itemsCombo) {
       precio += producto.getPrecio();
     }
-    return precio;
+    return (int) (precio-(precio*(descuento/100)));
   }
 
   @Override

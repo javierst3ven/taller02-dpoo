@@ -1,11 +1,13 @@
 package uniandes.taller2.consola;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import uniandes.taller2.modelo.Restaurante;
+import uniandes.taller2.modelo.Pedido;
 import uniandes.taller2.modelo.ProductoMenu;
 
 public class Aplicacion {
@@ -57,7 +59,7 @@ public class Aplicacion {
     else if(opcionSeleccionada == 2) { ejecutarIniciarNuevoPedido(); }
     else if(opcionSeleccionada == 3) { ejecutarAgregarElementoPedido(); }
     else if(opcionSeleccionada == 4) { ejecutarCerrarPedidoYGuardarFactura(); }
-    else if(opcionSeleccionada == 5) { ejecutarConsultarInformacionPedido(); }
+    else if(opcionSeleccionada == 5) { ejecutarConsultarInformacionPedidoPorID(); }
     else { System.out.println("Ninguna opción valida ha sido seleccionada"); }
   }
 
@@ -94,20 +96,37 @@ public class Aplicacion {
    * Agrega un nuevo elemento al pedido
    */
   private static void ejecutarAgregarElementoPedido() {
-
+    
   }
 
   /**
    * Cierra y guarda un pedido en una factura
    */
   private static void ejecutarCerrarPedidoYGuardarFactura() {
-
+    restaurante.cerrarYGuardarPedido();
+    System.out.println("Se ha cerrado y guardado el pedido");
   }
 
   /**
-   * Consulta la información del pedido
+   * Consulta la información del pedido por un ID especifico
    */
-  private static void ejecutarConsultarInformacionPedido() {
-
+  private static void ejecutarConsultarInformacionPedidoPorID() {
+    try {
+      int id = Integer.parseInt(bf.readLine());
+      Pedido pedido = restaurante.getPedidoPorID(id);
+      if(pedido == null) {
+        System.out.println("El pedido con el ID No. " + id + " no existe");
+      } else {
+        System.out.println("Pedido No. " + pedido.getIdPedido());
+        BufferedReader bf = new BufferedReader(new FileReader("/out/pedido" + id + ".txt"));
+        String line;
+        while((line = bf.readLine()) != "") {
+          System.out.println(line);
+        }
+        bf.close();
+      }
+    } catch(IOException e) {
+      System.err.println("[ERROR] No se ha podido leer el ID");
+    }
   }
 }

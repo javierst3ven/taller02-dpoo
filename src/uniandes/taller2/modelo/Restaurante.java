@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 public class Restaurante {
   private ArrayList<Combo> combos = new ArrayList<Combo>();
   private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
-  private int pedidoEnCurso = 0;
+  private Pedido pedidoEnCurso;
   private ArrayList<ProductoMenu> menuBase = new ArrayList<ProductoMenu>();
   private ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
 
@@ -35,18 +35,17 @@ public class Restaurante {
    * @param direccionCliente Dirección del cliente
    */
   public void iniciarPedido(String nombreCliente, String direccionCliente) {
-    Pedido pedido = new Pedido(nombreCliente, direccionCliente);
-    pedidos.add(pedido);
-    this.pedidoEnCurso = 1;
+    this.pedidoEnCurso = new Pedido(nombreCliente, direccionCliente);
   }
 
   /**
    * Cierra y guarda el pedido en un archivo .txt en la carpeta /out/pedido{id}.txt
    */
   public void cerrarYGuardarPedido() {
-    // escribir en un archivo txt el pedido, sacarlo de la lista y cambiar
-    // pedido en curso a 0
-    this.pedidoEnCurso = 0;
+    File archivoAGuardar = new File("/out/pedido" + pedidoEnCurso.getIdPedido()+".txt");
+    pedidoEnCurso.guardarFactura(archivoAGuardar);
+    pedidos.add(pedidoEnCurso);
+    pedidoEnCurso = null;
   }
 
   /**
@@ -55,7 +54,14 @@ public class Restaurante {
    * @return El pedido que esta en el indice 0 (el que esta en curso)
    */
   public Pedido getPedidoEnCurso() {
-    return this.pedidos.get(0);
+    return this.pedidoEnCurso;
+  }
+
+  public Pedido getPedidoPorID(int id) {
+    for(Pedido pedido : pedidos) {
+      if(pedido.getIdPedido() == id) return pedido;
+    }
+    return null;
   }
 
   /**

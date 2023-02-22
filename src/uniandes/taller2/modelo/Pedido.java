@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Pedido {
   private int numeroPedidos = 0;
-  private int idPedido = 0;
+  private int idPedido;
   private String nombreCliente;
   private String direccionCliente;
   private ArrayList<Producto> itemsPedido = new ArrayList<Producto>();
@@ -21,6 +21,8 @@ public class Pedido {
   public Pedido(String nombreCliente, String direccionCliente) {
     this.nombreCliente = nombreCliente;
     this.direccionCliente = direccionCliente;
+    numeroPedidos++;
+    this.idPedido = numeroPedidos;
   }
 
   /**
@@ -29,7 +31,7 @@ public class Pedido {
    * @return idPedido
    */
   public int getIdPedido() { 
-    return idPedido;
+    return this.idPedido;
   }
 
   /**
@@ -39,7 +41,6 @@ public class Pedido {
    */
   public void agregarProducto(Producto nuevoItem) {
     this.numeroPedidos = numeroPedidos + 1;
-    this.idPedido = idPedido + 1;
     this.itemsPedido.add(nuevoItem);
   }
 
@@ -77,11 +78,7 @@ public class Pedido {
    * @return precioIVAPedido
    */
   private int getPrecioIVAPedido() {
-    double precioIVAPedido = 0.0;
-    for (Producto producto : itemsPedido) {
-      precioIVAPedido += producto.getPrecio() * 0.19;
-    }
-    return (int) precioIVAPedido;
+    return (int) (this.getPrecioNetoPedido() * 0.19);
   }
 
   /**

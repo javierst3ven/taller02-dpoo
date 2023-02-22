@@ -35,7 +35,6 @@ public class ProductoAjustado implements Producto {
    */
   public void eliminarIngrediente(Ingrediente ingrediente) {
     this.eliminados.add(ingrediente);
-    this.precioAjustado = this.precioAjustado - ingrediente.getCostoAdicional();
   }
 
   @Override
@@ -45,12 +44,13 @@ public class ProductoAjustado implements Producto {
 
   @Override
   public int getPrecio() {
-    return this.base.getPrecio();
+    return this.base.getPrecio() + this.precioAjustado;
   }
 
   @Override
   public String generarTextoFactura() {
     String factura = "";
+    // implementar
     return factura;
   }
 }
